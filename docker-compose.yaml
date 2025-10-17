@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: admin
+
+  app:
+    build: .
+    container_name: app
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      DB_HOST: db
+      DB_NAME: mydb
+      DB_USER: root
+      DB_PASSWORD: admin
+
+volumes:
+  postgres_data:
