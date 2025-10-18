@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    deployment: app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+        - name: simpleurlshortener
+          image: docapurv/simpleurlshortener-app
+          env:
+            - name: DB_HOST
+              value: pg-service
+            - name: DB_NAME
+              value: mydb
+            - name: DB_USER
+              value: root
+            - name: DB_PASSWORD
+              value: admin
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always
