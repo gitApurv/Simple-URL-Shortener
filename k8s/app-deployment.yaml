@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deployment
+  name: two-tier-app
   labels:
-    deployment: app-deployment
+    app: two-tier-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: node-app
+      app: two-tier-app
   template:
     metadata:
       labels:
-        app: node-app
+        app: two-tier-app
     spec:
       containers:
-        - name: simpleurlshortener
+        - name: two-tier-app
           image: docapurv/simpleurlshortener-app
           env:
             - name: DB_HOST

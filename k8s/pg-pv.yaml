@@ -3,7 +3,6 @@ kind: PersistentVolume
 metadata:
   name: pg-pv
 spec:
-  storageClassName: manual
   capacity:
     storage: 256Mi
   volumeMode: Filesystem

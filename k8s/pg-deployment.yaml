@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pg-deployment
+  name: pg
   labels:
-    deployment: pg-deployment
+    app: pg
 spec:
   replicas: 1
   selector:
@@ -26,11 +26,10 @@ spec:
               value: admin
           ports:
             - containerPort: 5432
-          imagePullPolicy: Always
           volumeMounts:
-            - name: pg-pv
+            - name: pgdata
               mountPath: /var/lib/postgresql/data
       volumes:
-        - name: pg-pv
+        - name: pgdata
           persistentVolumeClaim:
             claimName: pg-pvc
