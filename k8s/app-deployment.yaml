@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: two-tier-app
+  name: simpleurlshortner
   labels:
-    app: two-tier-app
+    app: simpleurlshortner
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: two-tier-app
+      app: simpleurlshortner
   template:
     metadata:
       labels:
-        app: two-tier-app
+        app: simpleurlshortner
     spec:
       containers:
-        - name: two-tier-app
+        - name: simpleurlshortner
           image: docapurv/simpleurlshortener-app
           env:
             - name: DB_HOST
-              value: pg-service
+              value: pg
             - name: DB_NAME
-              value: mydb
+              value: "mydb"
             - name: DB_USER
-              value: root
+              value: "root"
             - name: DB_PASSWORD
-              value: admin
+              value: "admin"
           ports:
             - containerPort: 3000
           imagePullPolicy: Always

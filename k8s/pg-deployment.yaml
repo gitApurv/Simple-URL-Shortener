@@ -19,11 +19,11 @@ spec:
           image: postgres:16-alpine
           env:
             - name: POSTGRES_DB
-              value: mydb
+              value: "mydb"
             - name: POSTGRES_USER
-              value: root
+              value: "root"
             - name: POSTGRES_PASSWORD
-              value: admin
+              value: "admin"
           ports:
             - containerPort: 5432
           volumeMounts:
